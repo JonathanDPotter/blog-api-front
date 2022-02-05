@@ -1,0 +1,31 @@
+@use "../../theme";
+
+header {
+  height: calc(10vh - 0.4rem);
+  width: calc(100vw - 0.4rem);
+  margin: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: x-large;
+  @include theme.border;
+
+  nav {
+    width: 50vw;
+    display: flex;
+    justify-content: space-evenly;
+
+    a {
+      color: inherit;
+      text-underline-offset: 0.2rem;
+      text-decoration: underline 0.2rem;
+      text-decoration-color: theme.$main-text-transparent;
+      transition: text-decoration-color 500ms;
+    }
+
+    .active {
+      text-decoration-color: theme.$main-text;
+      transition: text-decoration-color 500ms;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+$background: rgb(22, 97, 65);
+$main-text: rgb(3, 244, 114);
+$main-text-transparent: rgba(3, 244, 114, 0);
+
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin border {
+  border: .2rem solid $main-text;
+}
