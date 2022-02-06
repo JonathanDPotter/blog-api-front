@@ -3,6 +3,7 @@
 
 * {
   box-sizing: border-box;
+  z-index: 0;
 }
 
 body {
@@ -40,4 +41,6 @@ button {
     background-color: theme.$main-text;
     transition: color 50ms, background-color 50ms;
   }
+
 }
+

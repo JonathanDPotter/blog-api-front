@@ -1,13 +1,24 @@
 import React, { FormEvent, useState } from "react";
+import { faEye } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // utils
 import api from "../../api/api";
 // styles
 import "./Register.scss";
+import { AxiosResponse } from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
+import Modal from "../Modal/Modal";
 
 const Register = () => {
   const initialState = { username: "", password: "", repeatPassword: "" };
   const [state, setState] = useState(initialState);
   const { username, password, repeatPassword } = state;
+  const [passType, setPassType] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+
   const passReg =
     "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$";
 
@@ -17,13 +28,25 @@ const Register = () => {
     setState({ ...state, [id]: value });
   };
 
+  const handleVisibility = () => {
+    setPassType(!passType);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    try {
-      const response = await api.register({ username, password });
-      console.log(response.status, response.data);
-    } catch (error: any) {
-      console.error(error.message, error);
+
+    const response = await api.register({ username, password });
+    if (response.data.success) {
+      setState(initialState);
+      navigate("/");
+    } else {
+      setState(initialState);
+      setError(response.data.message);
+      setShowModal(true);
     }
   };
 
@@ -47,7 +70,7 @@ const Register = () => {
         <div className="label-input">
           <label htmlFor="password">password</label>
           <input
-            type="password"
+            type={passType ? "text" : "password"}
             name="password"
             id="password"
             onChange={handleChange}
@@ -61,7 +84,7 @@ const Register = () => {
         <div className="label-input">
           <label htmlFor="repeatPassword">repeat password</label>
           <input
-            type="password"
+            type={passType ? "text" : "password"}
             name="repeatPassword"
             id="repeatPassword"
             onChange={handleChange}
@@ -71,9 +94,15 @@ const Register = () => {
             pattern={passReg}
             required
           />
+          <FontAwesomeIcon
+            className="icon"
+            icon={faEye}
+            onClick={handleVisibility}
+          />
         </div>
         <button type="submit">Submit</button>
       </form>
+      {showModal && <Modal message={error} closeFunction={closeModal} />}
     </div>
   );
 };
