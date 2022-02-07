@@ -1,11 +1,11 @@
 @use "../../theme";
 
-.login {
+.make-post {
   @include theme.flex-column-center;
   form {
     font-size: 1.5rem;
-    height: 50vh;
-    width: 50vw;
+    min-height: 70vh;
+    width: 80vw;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -14,10 +14,10 @@
 
     .label-input {
       width: 100%;
-      margin: 2rem 0;
+      margin: 1rem 0;
       position: relative;
 
-      input {
+      input, textarea {
         height: 1.5rem;
         font-size: inherit;
         font-family: inherit;
@@ -32,10 +32,11 @@
       }
     }
 
-    .icon {
-      right: 0;
-      position: absolute;
-      font-size: 1rem;
+    textArea {
+      height: fit-content !important;
+      border: .2rem solid theme.$main-text !important;
+      width: 80% !important;
+      resize: none;
     }
 
     button {

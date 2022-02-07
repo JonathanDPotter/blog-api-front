@@ -1,12 +1,11 @@
 @use "../../theme";
 
-.login {
+.log-out {
   @include theme.flex-column-center;
   form {
     font-size: 1.5rem;
     height: 50vh;
     width: 50vw;
-    position: relative;
     display: flex;
     flex-direction: column;
     @include theme.border;
@@ -14,7 +13,7 @@
 
     .label-input {
       width: 100%;
-      margin: 2rem 0;
+      margin: 1rem 0;
       position: relative;
 
       input {
@@ -32,26 +31,10 @@
       }
     }
 
-    .icon {
-      right: 0;
-      position: absolute;
-      font-size: 1rem;
-    }
-
     button {
       margin: 1rem auto;
       height: 3rem;
       width: 10rem;
-      &:disabled {
-        border-color: theme.$dark-text;
-        color: theme.$dark-text;
-      }
-    }
-
-    span {
-      position: absolute;
-      bottom: 0;
-      font-size: 1rem;
     }
   }
 }

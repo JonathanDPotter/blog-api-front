@@ -6,6 +6,7 @@
     font-size: 1.5rem;
     height: 50vh;
     width: 50vw;
+    position: relative;
     display: flex;
     flex-direction: column;
     @include theme.border;
@@ -41,6 +42,16 @@
       margin: 1rem auto;
       height: 3rem;
       width: 10rem;
+      &:disabled {
+        border-color: theme.$dark-text;
+        color: theme.$dark-text;
+      }
+    }
+
+    span {
+      position: absolute;
+      bottom: 0;
+      font-size: 1rem;
     }
   }
 }

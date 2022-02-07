@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <div className="home page">
-      {user && <h1>Hello {user}</h1>}
+      <h1>Hello {user ? user : "Guest"}</h1>
       {isLoading && <h1>Loading...</h1>}
       {published &&
         published.map((post: any, i) => {

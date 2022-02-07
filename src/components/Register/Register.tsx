@@ -100,7 +100,14 @@ const Register = () => {
             onClick={handleVisibility}
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit"disabled={!(username && password && repeatPassword)}>Submit</button>
+        {password && repeatPassword && password !== repeatPassword && (
+          <p style={{ color: "rgb(202, 202, 59)" }}>Passwords must match!!</p>
+        )}
+        <span>
+          Your password must contain 8 characters, a capital letter, a number
+          and a special character.
+        </span>
       </form>
       {showModal && <Modal message={error} closeFunction={closeModal} />}
     </div>

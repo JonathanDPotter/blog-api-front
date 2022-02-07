@@ -1,4 +1,5 @@
 import axios from "axios";
+import InewPost from "../interfaces/newPost";
 // types
 import InewUser from "../interfaces/newUser";
 
@@ -10,6 +11,8 @@ const register = (newUser: InewUser) =>
 const login = (user: InewUser) =>
   axios.post(baseURL + "/api/users/login", user);
 
-const api = { register, login };
+const makePost = (post: InewPost) => axios.post(baseURL + "/api/posts", post);
+
+const api = { register, login, makePost };
 
 export default api;
