@@ -3,4 +3,5 @@ export default interface InewPost {
   title: string;
   body: string;
   date: number;
+  published: boolean;
 }

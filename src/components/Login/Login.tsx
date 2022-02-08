@@ -13,7 +13,6 @@ import Modal from "../Modal/Modal";
 const Login = () => {
   const initialState = { username: "", password: "" };
   const [state, setState] = useState(initialState);
-  const [showModal, setShowModal] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [passType, setPassType] = useState(false);
 
@@ -48,7 +47,6 @@ const Login = () => {
         navigate("/");
       } else {
         setMessage(response.data.message);
-        setShowModal(true);
       }
       setState(initialState);
     } catch (error: any) {
@@ -58,7 +56,6 @@ const Login = () => {
   };
 
   const closeModal = () => {
-    setShowModal(false);
     setMessage(null);
   };
 
@@ -98,12 +95,15 @@ const Login = () => {
             onClick={handleVisibility}
           />
         </div>
-        <button type="submit" disabled={!(username && password)}>Submit</button>
-        <span>Your password must contain 8 characters, a capital letter, a number and a special character.</span>
+        <button type="submit" disabled={!(username && password)}>
+          Submit
+        </button>
+        <span>
+          Your password must contain 8 characters, a capital letter, a number
+          and a special character.
+        </span>
       </form>
-      {showModal && message && (
-        <Modal message={message} closeFunction={closeModal} />
-      )}
+      {message && <Modal message={message} closeFunction={closeModal} />}
     </div>
   );
 };

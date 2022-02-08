@@ -11,7 +11,10 @@ const register = (newUser: InewUser) =>
 const login = (user: InewUser) =>
   axios.post(baseURL + "/api/users/login", user);
 
-const makePost = (post: InewPost) => axios.post(baseURL + "/api/posts", post);
+const makePost = (post: InewPost, token: string) =>
+  axios.post(baseURL + "/api/posts", post, {
+    headers: { authorization: `Bearer ${token}` },
+  });
 
 const api = { register, login, makePost };
 

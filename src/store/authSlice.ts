@@ -1,11 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { loadState } from "./localStorage";
 
-interface IauthSlicestate {
+interface IauthSliceState {
   token: string | null;
   user: string | null;
 }
 
-const initialState = { token: null, user: null } as IauthSlicestate;
+const persistedState = loadState();
+
+const initialState = persistedState.auth.user
+  ? ({
+      token: persistedState.auth.token,
+      user: persistedState.auth.user,
+    } as IauthSliceState)
+  : ({ token: null, user: null } as IauthSliceState);
 
 const authSlice = createSlice({
   name: "auth",
