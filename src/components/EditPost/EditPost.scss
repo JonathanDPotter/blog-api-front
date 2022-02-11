@@ -2,11 +2,12 @@
 
 .edit {
   @include theme.flex-column-center;
-    z-index: 1 !important;
-  position: absolute;
-  top: 10vh;
-  left: 0;
-  background-color: theme.$background;
+
+  h1 {
+    font-size: 3rem;
+    margin: 1rem auto;
+  }
+
   form {
     font-size: 1.5rem;
     min-height: 70vh;
@@ -22,7 +23,8 @@
       margin: 1rem 0;
       position: relative;
 
-      input, textarea {
+      input,
+      textarea {
         height: 1.5rem;
         font-size: inherit;
         font-family: inherit;
@@ -39,7 +41,7 @@
 
     textArea {
       height: fit-content !important;
-      border: .2rem solid theme.$main-text !important;
+      border: 0.2rem solid theme.$main-text !important;
       width: 80% !important;
       resize: none;
     }
@@ -52,12 +54,6 @@
         border-color: theme.$dark-text;
         color: theme.$dark-text;
       }
-    }
-
-    span {
-      position: absolute;
-      bottom: 0;
-      font-size: 1rem;
     }
   }
 }

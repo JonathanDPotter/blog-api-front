@@ -1,7 +1,9 @@
 import React, { FC, useState } from "react";
-import { useLocation } from "react-router-dom";
-// component
-import EditPost from "../EditPost/EditPost";
+import { useLocation, useNavigate } from "react-router-dom";
+import api from "../../api/api";
+import { useAppSelector } from "../../store/hooks";
+// components
+import Modal from "../Modal/Modal";
 // styles
 import "./Post.scss";
 
@@ -14,14 +16,37 @@ interface IpostProps {
   published?: boolean;
 }
 
-const Post: FC<IpostProps> = ({ _id, title, author, body, date, published }) => {
-  const [edit, setEdit] = useState(false);
+const Post: FC<IpostProps> = ({
+  _id,
+  title,
+  author,
+  body,
+  date,
+  published,
+}) => {
+  const [modalMessage, setModalMessage] = useState<string | null>(null);
   const dateObj = new Date(date);
+
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const { token } = useAppSelector((state) => state.auth);
+
+  const deletePost = () => {
+    token && api.deletePost(_id, token);
+    navigate("/");
+    navigate(0);
+  };
+
+  const handleClick = () => {
+    if (location.pathname === "/") {
+      navigate(`/posts/${_id}`);
+    }
+  };
 
   return (
     <div className="post">
-      <h2>{title}</h2>
+      <h2 onClick={handleClick}>{title}</h2>
       <p>{body}</p>
       <h3>by {author}</h3>
       <span>
@@ -29,15 +54,19 @@ const Post: FC<IpostProps> = ({ _id, title, author, body, date, published }) => 
       </span>
       <br />
       {location.pathname === "/myposts" && (
-        <button onClick={() => setEdit(!edit)}>edit</button>
+        <>
+          <span>{published ? "Published" : "Unublished"}</span>
+          <button onClick={() => navigate(`/posts/edit/${_id}`)}>edit</button>
+          <button onClick={() => setModalMessage("Are you Sure?")}>
+            Delete
+          </button>
+        </>
       )}
-      {edit && (
-        <EditPost
-          _id={_id}
-          title={title}
-          body={body}
-          closeFunction={() => setEdit(!edit)}
-          published={published ? published : false}
+      {modalMessage && (
+        <Modal
+          message={modalMessage}
+          closeFunction={() => setModalMessage(null)}
+          deleteFunction={deletePost}
         />
       )}
     </div>

@@ -29,6 +29,11 @@ const editPost = (update: IpostUpdate) =>
     { headers: { authorization: `Bearer ${update.token}` } }
   );
 
-const api = { register, login, validate, makePost, editPost };
+const deletePost = (_id: string, token: string) =>
+  axios.delete(baseURL + "/api/posts/" + _id, {
+    headers: { authorization: `Bearer ${token}` },
+  });
+
+const api = { register, login, validate, makePost, editPost, deletePost };
 
 export default api;

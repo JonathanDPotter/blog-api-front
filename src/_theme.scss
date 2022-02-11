@@ -6,10 +6,9 @@ $main-text-transparent: rgba(3, 244, 114, 0);
 @mixin flex-column-center {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
 @mixin border {
-  border: .2rem solid $main-text;
+  border: 0.2rem solid $main-text;
 }

@@ -1,6 +1,7 @@
 @use "../../theme";
 
 .modal-back {
+  z-index: 1;
   position: absolute;
   top: 0;
   left: 0;
@@ -10,7 +11,6 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(15, 70, 60, 0.5);
-  z-index: 1;
 
   .modal-front {
     height: 40vh;

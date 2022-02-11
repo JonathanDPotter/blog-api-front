@@ -3,9 +3,12 @@ import { useAppSelector } from "../../store/hooks";
 import { useGetAllPostsQuery } from "../../store/postApiSlice";
 // components
 import Post from "../Post/Post";
+// styles
+import "./MyPosts.scss";
 
 const MyPosts = () => {
   const { data, error, isLoading } = useGetAllPostsQuery("");
+  if (error) console.error(error);
   const { user } = useAppSelector((state) => state.auth);
   const [mine, setMine] = useState([]);
 
@@ -17,6 +20,7 @@ const MyPosts = () => {
 
   return (
     <div className="my-posts page">
+      <h1>My Posts</h1>
       {isLoading && <h1>Loading...</h1>}
       {user &&
         mine &&
@@ -31,6 +35,7 @@ const MyPosts = () => {
             published={post.published}
           />
         ))}
+      {user && mine.length === 0 && <h1>No posts</h1>}
     </div>
   );
 };

@@ -5,6 +5,8 @@ import { logOut } from "../../store/authSlice";
 import api from "../../api/api";
 import { useAppSelector } from "../../store/hooks";
 import { useGetAllPostsQuery } from "../../store/postApiSlice";
+// types
+import Ipost from "../../interfaces/post";
 // components
 import Post from "../Post/Post";
 // styles
@@ -28,7 +30,7 @@ const Home = () => {
 
   useEffect(() => {
     if (data) {
-      setPublished(data.posts.filter((post: any) => post.published === true));
+      setPublished(data.posts.filter((post: Ipost) => post.published === true));
     }
     if (token) checkValid();
   }, [data, token]);
@@ -38,7 +40,7 @@ const Home = () => {
       <h1>Hello {user ? user : "Guest"}</h1>
       {isLoading && <h1>Loading...</h1>}
       {published &&
-        published.map((post: any, i) => {
+        published.map((post: Ipost, i) => {
           return (
             <Post
               _id={post._id}

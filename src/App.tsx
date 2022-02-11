@@ -9,6 +9,8 @@ import Login from "./components/Login/Login";
 import LogOut from "./components/LogOut/LogOut";
 import MakePost from "./components/MakePost/MakePost";
 import MyPosts from "./components/MyPosts/MyPosts";
+import FullPost from "./components/FullPost/FullPost";
+import EditPost from "./components/EditPost/EditPost";
 
 const App = () => {
   return (
@@ -20,6 +22,8 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/makepost" element={<MakePost />} />
         <Route path="/myposts" element={<MyPosts />} />
+        <Route path="/posts/:_id" element={<FullPost />} />
+        <Route path="/posts/edit/:_id" element={<EditPost />} />
         <Route path="/logout" element={<LogOut />} />
         <Route
           path="*"

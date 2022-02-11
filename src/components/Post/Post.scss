@@ -3,7 +3,8 @@
 .post {
   margin: 0.2rem;
   padding: 0.2rem;
-  width: calc(50vw - 1rem);
+  width: calc(50% - 0.4rem);
+  height: 39vh;
   @include theme.border;
   display: flex;
   flex-direction: column;
@@ -16,9 +17,26 @@
     text-indent: 1rem;
   }
 
-  
-}
+  p {
+    height: 100%;
+    text-indent: 1rem;
+    overflow: clip;
+    text-overflow: ellipsis;
+    margin: 1rem 0;
+  }
 
-button {
-  margin-top: 1rem;
+  h3 {
+    align-self: flex-end;
+    margin-bottom: 0.2rem;
+  }
+
+  span {
+    margin-top: auto;
+  }
+
+  button {
+    margin: 1rem auto;
+    margin-top: 0;
+    width: 5rem;
+  }
 }

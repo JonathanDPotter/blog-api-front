@@ -1,35 +1,27 @@
-import React, { FC, FormEvent, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { FormEvent, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import api from "../../api/api";
-import InewPost from "../../interfaces/newPost";
 import IpostUpdate from "../../interfaces/postUpdate";
 import { useAppSelector } from "../../store/hooks";
+import { useGetAllPostsQuery } from "../../store/postApiSlice";
 import Modal from "../Modal/Modal";
+// types
+import Ipost from "../../interfaces/post";
 // styles
 import "./EditPost.scss";
 
-interface Iprops {
-  closeFunction: () => void;
-  _id: string;
-  title: string;
-  body: string;
-  published: boolean;
-}
-
-const EditPost: FC<Iprops> = ({
-  closeFunction,
-  _id,
-  title,
-  body,
-  published,
-}) => {
-  const initialState = { title, body, published };
-
-  const navigate = useNavigate();
-
+const EditPost = () => {
+  const { data, error } = useGetAllPostsQuery("");
+  error && console.error(error);
+  const { _id } = useParams();
+  const [post, setPost] = useState<Ipost | null>(null);
   const [modalMessage, setModalMessage] = useState<string | null>(null);
-  const [formState, setFormState] = useState(initialState);
-
+  const [formState, setFormState] = useState({
+    title: "",
+    body: "",
+    published: false,
+  });
+  const navigate = useNavigate();
   const { token } = useAppSelector((state) => state.auth);
 
   const handleChange = (
@@ -46,7 +38,7 @@ const EditPost: FC<Iprops> = ({
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
-    if (token) {
+    if (token && _id) {
       const newPost: IpostUpdate = {
         ...formState,
         token,
@@ -66,6 +58,16 @@ const EditPost: FC<Iprops> = ({
   const closeModal = () => {
     setModalMessage(null);
   };
+
+  useEffect(() => {
+    data && setPost(data.posts.find((obj: Ipost) => obj._id === _id));
+    post &&
+      setFormState({
+        title: post.title,
+        body: post.body,
+        published: post.published,
+      });
+  }, [data, post, _id]);
 
   return (
     <div className="edit page">
@@ -102,14 +104,12 @@ const EditPost: FC<Iprops> = ({
             onChange={handleChange}
           />
         </div>
-        <button type="submit" disabled={!(title && body)}>
-          submit
-        </button>
+        <button type="submit">submit</button>
+        <button onClick={() => navigate("/myposts")}>cancel</button>
       </form>
       {modalMessage && (
         <Modal message={modalMessage} closeFunction={closeModal} />
       )}
-      <button onClick={closeFunction}>cancel</button>
     </div>
   );
 };

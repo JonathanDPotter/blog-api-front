@@ -2,34 +2,18 @@
 
 .log-out {
   @include theme.flex-column-center;
+
+  h1 {
+    font-size: 3rem;
+    margin: 1rem;
+    max-width: 50vw;
+  }
+
   form {
-    font-size: 1.5rem;
-    height: 50vh;
-    width: 50vw;
-    display: flex;
-    flex-direction: column;
     @include theme.border;
-    padding: 0.5rem;
-
-    .label-input {
-      width: 100%;
-      margin: 1rem 0;
-      position: relative;
-
-      input {
-        height: 1.5rem;
-        font-size: inherit;
-        font-family: inherit;
-        float: right;
-        background: inherit;
-        border: none;
-        border-bottom: 0.2rem solid theme.$main-text;
-        width: 50%;
-        outline: none;
-        color: inherit;
-        caret-color: theme.$main-text;
-      }
-    }
+    @include theme.flex-column-center;
+    justify-content: space-between;
+    height: 50vh;
 
     button {
       margin: 1rem auto;
