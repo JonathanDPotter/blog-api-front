@@ -2,6 +2,7 @@ import axios from "axios";
 import InewPost from "../interfaces/newPost";
 // types
 import InewUser from "../interfaces/newUser";
+import IpostUpdate from "../interfaces/postUpdate";
 
 const baseURL = "http://localhost:1337";
 
@@ -11,11 +12,23 @@ const register = (newUser: InewUser) =>
 const login = (user: InewUser) =>
   axios.post(baseURL + "/api/users/login", user);
 
+const validate = (token: string) =>
+  axios.get(baseURL + "/api/users/validate", {
+    headers: { authorization: `Bearer ${token}` },
+  });
+
 const makePost = (post: InewPost, token: string) =>
   axios.post(baseURL + "/api/posts", post, {
     headers: { authorization: `Bearer ${token}` },
   });
 
-const api = { register, login, makePost };
+const editPost = (update: IpostUpdate) =>
+  axios.put(
+    baseURL + "/api/posts/" + update._id,
+    { body: update.body, title: update.title, published: update.published },
+    { headers: { authorization: `Bearer ${update.token}` } }
+  );
+
+const api = { register, login, validate, makePost, editPost };
 
 export default api;

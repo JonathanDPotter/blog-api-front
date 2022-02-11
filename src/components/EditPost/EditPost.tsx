@@ -1,25 +1,36 @@
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { FC, FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// utils
 import api from "../../api/api";
-import { useAppSelector } from "../../store/hooks";
-// types
 import InewPost from "../../interfaces/newPost";
-// components
+import IpostUpdate from "../../interfaces/postUpdate";
+import { useAppSelector } from "../../store/hooks";
 import Modal from "../Modal/Modal";
 // styles
-import "./MakePost.scss";
+import "./EditPost.scss";
 
-const MakePost = () => {
-  const initialState = { title: "", body: "", published: false };
+interface Iprops {
+  closeFunction: () => void;
+  _id: string;
+  title: string;
+  body: string;
+  published: boolean;
+}
+
+const EditPost: FC<Iprops> = ({
+  closeFunction,
+  _id,
+  title,
+  body,
+  published,
+}) => {
+  const initialState = { title, body, published };
 
   const navigate = useNavigate();
 
   const [modalMessage, setModalMessage] = useState<string | null>(null);
   const [formState, setFormState] = useState(initialState);
-  const { title, body, published } = formState;
 
-  const { user, token } = useAppSelector((state) => state.auth);
+  const { token } = useAppSelector((state) => state.auth);
 
   const handleChange = (
     event: FormEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -35,14 +46,14 @@ const MakePost = () => {
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
-    if (user && token) {
-      const newPost: InewPost = {
+    if (token) {
+      const newPost: IpostUpdate = {
         ...formState,
-        author: user,
-        date: Date.now(),
+        token,
+        _id,
       };
-      console.log(newPost);
-      const response = await api.makePost(newPost, token);
+
+      const response = await api.editPost(newPost);
       if (response.data.success) {
         navigate("/");
         navigate(0);
@@ -56,22 +67,18 @@ const MakePost = () => {
     setModalMessage(null);
   };
 
-  useEffect(() => {
-    if (!user) navigate("/");
-  }, [user, navigate]);
-
   return (
-    <div className="make-post page">
-      <h1>Make Post</h1>
+    <div className="edit page">
+      <h1>Edit Post</h1>
       <form onSubmit={handleSubmit}>
         <div className="label-input">
           <label htmlFor="title">Title</label>
           <input
             type="text"
             name="title"
-            maxLength={15}
             id="title"
-            value={title}
+            maxLength={15}
+            value={formState.title}
             onChange={handleChange}
           />
         </div>
@@ -80,7 +87,7 @@ const MakePost = () => {
           <textarea
             name="body"
             id="body"
-            value={body}
+            value={formState.body}
             onChange={handleChange}
             rows={10}
           />
@@ -91,7 +98,7 @@ const MakePost = () => {
             type="checkbox"
             name="published"
             id="published"
-            checked={published}
+            checked={formState.published}
             onChange={handleChange}
           />
         </div>
@@ -102,8 +109,9 @@ const MakePost = () => {
       {modalMessage && (
         <Modal message={modalMessage} closeFunction={closeModal} />
       )}
+      <button onClick={closeFunction}>cancel</button>
     </div>
   );
 };
 
-export default MakePost;
+export default EditPost;

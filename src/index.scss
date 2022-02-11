@@ -21,7 +21,7 @@ code {
 .page {
   min-height: 85vh;
   margin: 0.2rem;
-  width: calc(100vw - 0.4rem);
+  max-width: calc(100vw - 0.4rem);
   overflow-x: none;
   @include theme.border;
 }
@@ -41,6 +41,4 @@ button {
     background-color: theme.$main-text;
     transition: color 50ms, background-color 50ms;
   }
-
 }
-

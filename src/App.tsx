@@ -8,6 +8,7 @@ import Footer from "./components/Footer/Footer";
 import Login from "./components/Login/Login";
 import LogOut from "./components/LogOut/LogOut";
 import MakePost from "./components/MakePost/MakePost";
+import MyPosts from "./components/MyPosts/MyPosts";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/makepost" element={<MakePost />} />
+        <Route path="/myposts" element={<MyPosts />} />
         <Route path="/logout" element={<LogOut />} />
         <Route
           path="*"
@@ -30,4 +32,3 @@ const App = () => {
 };
 
 export default App;
-

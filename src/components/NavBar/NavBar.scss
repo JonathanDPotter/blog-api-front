@@ -20,12 +20,12 @@ header {
       text-underline-offset: 0.2rem;
       text-decoration: underline 0.2rem;
       text-decoration-color: theme.$main-text-transparent;
-      transition: text-decoration-color 500ms;
+      transition: text-decoration-color 200ms;
     }
 
     .active {
       text-decoration-color: theme.$main-text;
-      transition: text-decoration-color 500ms;
+      transition: text-decoration-color 200ms;
     }
   }
 }

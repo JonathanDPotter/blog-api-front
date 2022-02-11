@@ -12,6 +12,7 @@ const NavBar = () => {
       <>
         <NavLink to="/logout">Logout</NavLink>
         <NavLink to="makepost">Make Post</NavLink>
+        <NavLink to="myposts">My Posts</NavLink>
       </>
     );
   };
