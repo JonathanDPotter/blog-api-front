@@ -17,7 +17,8 @@
       margin: 1rem 0;
       position: relative;
 
-      input, textarea {
+      input,
+      textarea {
         height: 1.5rem;
         font-size: inherit;
         font-family: inherit;
@@ -34,9 +35,13 @@
 
     textArea {
       height: fit-content !important;
-      border: .2rem solid theme.$main-text !important;
+      border: 0.2rem solid theme.$main-text !important;
       width: 80% !important;
       resize: none;
+    }
+
+    .check-box {
+      width: 10rem;
     }
 
     button {

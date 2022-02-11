@@ -85,7 +85,7 @@ const MakePost = () => {
             rows={10}
           />
         </div>
-        <div className="label-input">
+        <div className="label-input check-box">
           <label htmlFor="published">Publish</label>
           <input
             type="checkbox"
