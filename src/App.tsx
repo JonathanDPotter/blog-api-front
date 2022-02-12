@@ -12,6 +12,8 @@ import MyPosts from "./components/MyPosts/MyPosts";
 import FullPost from "./components/FullPost/FullPost";
 import EditPost from "./components/EditPost/EditPost";
 import About from "./components/About/About";
+import Contact from "./components/Contact/Contact";
+import NotFound from "./components/NotFound/NotFound";
 
 const App = () => {
   return (
@@ -27,10 +29,8 @@ const App = () => {
         <Route path="/posts/edit/:_id" element={<EditPost />} />
         <Route path="/logout" element={<LogOut />} />
         <Route path="/about" element={<About />} />
-        <Route
-          path="*"
-          element={<h1 className="page" style={{ fontSize: "5rem" }}>404 not found</h1>}
-        />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>

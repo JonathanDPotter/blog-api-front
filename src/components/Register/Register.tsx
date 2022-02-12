@@ -5,8 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import api from "../../api/api";
 // styles
 import "./Register.scss";
-import { AxiosResponse } from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Modal from "../Modal/Modal";
 
 const Register = () => {
@@ -100,7 +99,12 @@ const Register = () => {
             onClick={handleVisibility}
           />
         </div>
-        <button type="submit"disabled={!(username && password && repeatPassword)}>Submit</button>
+        <button
+          type="submit"
+          disabled={!(username && password && repeatPassword)}
+        >
+          Submit
+        </button>
         {password && repeatPassword && password !== repeatPassword && (
           <p className="alert">Passwords must match!!</p>
         )}
