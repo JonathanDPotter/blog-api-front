@@ -48,6 +48,10 @@
       }
     }
 
+    .alert {
+      color: theme.$alert-text;
+    }
+
     span {
       position: absolute;
       bottom: 0;

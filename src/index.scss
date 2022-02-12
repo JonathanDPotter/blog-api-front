@@ -28,6 +28,10 @@ code {
   @include theme.border;
 }
 
+h1 {
+  font-stretch: ultra-expanded;
+}
+
 p {
   white-space: pre-wrap;
 }

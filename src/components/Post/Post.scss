@@ -8,6 +8,8 @@
   @include theme.border;
   display: flex;
   flex-direction: column;
+  z-index: 0 !important;
+  position: relative;
 
   h2 {
     color: theme.$background;

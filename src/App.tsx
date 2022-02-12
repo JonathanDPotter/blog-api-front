@@ -11,6 +11,7 @@ import MakePost from "./components/MakePost/MakePost";
 import MyPosts from "./components/MyPosts/MyPosts";
 import FullPost from "./components/FullPost/FullPost";
 import EditPost from "./components/EditPost/EditPost";
+import About from "./components/About/About";
 
 const App = () => {
   return (
@@ -25,9 +26,10 @@ const App = () => {
         <Route path="/posts/:_id" element={<FullPost />} />
         <Route path="/posts/edit/:_id" element={<EditPost />} />
         <Route path="/logout" element={<LogOut />} />
+        <Route path="/about" element={<About />} />
         <Route
           path="*"
-          element={<h1 style={{ fontSize: "5rem" }}>404 not found</h1>}
+          element={<h1 className="page" style={{ fontSize: "5rem" }}>404 not found</h1>}
         />
       </Routes>
       <Footer />

@@ -102,7 +102,7 @@ const Register = () => {
         </div>
         <button type="submit"disabled={!(username && password && repeatPassword)}>Submit</button>
         {password && repeatPassword && password !== repeatPassword && (
-          <p style={{ color: "rgb(202, 202, 59)" }}>Passwords must match!!</p>
+          <p className="alert">Passwords must match!!</p>
         )}
         <span>
           Your password must contain 8 characters, a capital letter, a number
