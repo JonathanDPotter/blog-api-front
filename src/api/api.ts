@@ -4,7 +4,7 @@ import InewPost from "../interfaces/newPost";
 import InewUser from "../interfaces/newUser";
 import IpostUpdate from "../interfaces/postUpdate";
 
-const baseURL = "https://jonathan-potter-rest-api.herokuapp.com/";
+const baseURL = "https://jonathan-potter-rest-api.herokuapp.com";
 
 const register = (newUser: InewUser) =>
   axios.post(baseURL + "/api/users/register", newUser);
