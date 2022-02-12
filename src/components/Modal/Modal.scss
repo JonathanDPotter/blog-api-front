@@ -13,6 +13,7 @@
   background-color: rgba(15, 70, 60, 0.5);
 
   .modal-front {
+    z-index: 1;
     height: 40vh;
     width: 60vw;
     background-color: theme.$background;
@@ -23,10 +24,12 @@
     justify-content: space-evenly;
 
      p {
+       z-index: 1;
       font-size: 1.5rem;
      }
 
     button {
+      z-index: 1;
       margin: 1rem auto;
       height: 3rem;
       width: 10rem;
