@@ -8,7 +8,7 @@ interface IauthSliceState {
 
 const persistedState = loadState();
 
-const initialState = persistedState.auth.user
+const initialState = persistedState.auth
   ? ({
       token: persistedState.auth.token,
       user: persistedState.auth.user,
