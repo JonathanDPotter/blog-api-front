@@ -7,8 +7,8 @@ import { useGetAllPostsQuery } from "../../store/postApiSlice";
 import Modal from "../Modal/Modal";
 // types
 import Ipost from "../../interfaces/post";
-// styles
-import "./EditPost.scss";
+import Button from "../Button/Button";
+import ButtonTypes from "../../enums/ButtonTypes";
 
 const EditPost = () => {
   const { data, error } = useGetAllPostsQuery("");
@@ -104,8 +104,12 @@ const EditPost = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit">submit</button>
-        <button onClick={() => navigate("/myposts")}>cancel</button>
+        <Button type={ButtonTypes.submit} text="submit" />
+        <Button
+          type={ButtonTypes.button}
+          text="cancel"
+          onClick={() => navigate("/myposts")}
+        />
       </form>
       {modalMessage && (
         <Modal message={modalMessage} closeFunction={closeModal} />

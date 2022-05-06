@@ -5,10 +5,11 @@ import { useNavigate } from "react-router-dom";
 // utils
 import api from "../../api/api";
 import { useAppDispatch } from "../../store/hooks";
-// styles
-import "./Login.scss";
 import { setToken, setUser } from "../../store/authSlice";
+// components
 import Modal from "../Modal/Modal";
+import Button from "../Button/Button";
+import ButtonTypes from "../../enums/ButtonTypes";
 
 const Login = () => {
   const initialState = { username: "", password: "" };
@@ -60,8 +61,8 @@ const Login = () => {
   };
 
   return (
-    <div className="page login">
-      <h1>Login</h1>
+    <div className="page">
+      <h2 className="page-title">Login</h2>
       <form onSubmit={handleSubmit}>
         <div className="label-input">
           <label htmlFor="username">username</label>
@@ -95,13 +96,15 @@ const Login = () => {
             onClick={handleVisibility}
           />
         </div>
-        <button type="submit" disabled={!(username && password)}>
-          Submit
-        </button>
-        <span>
+        <Button
+          type={ButtonTypes.submit}
+          disabled={!(username && password)}
+          text="Submit"
+        />
+        <p className="form-info">
           Your password must contain 8 characters, a capital letter, a number
           and a special character.
-        </span>
+        </p>
       </form>
       {message && <Modal message={message} closeFunction={closeModal} />}
     </div>

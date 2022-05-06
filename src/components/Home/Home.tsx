@@ -9,8 +9,6 @@ import { useGetAllPostsQuery } from "../../store/postApiSlice";
 import Ipost from "../../interfaces/post";
 // components
 import Post from "../Post/Post";
-// styles
-import "./Home.scss";
 
 const Home = () => {
   const { data, error, isLoading } = useGetAllPostsQuery("");
@@ -21,26 +19,28 @@ const Home = () => {
 
   const { user, token } = useAppSelector((state) => state.auth);
 
-  const checkValid = async () => {
-    if (token) {
-      const response = await api.validate(token);
-      if (!response.data.success) dispatch(logOut());
-    }
-  };
-
   useEffect(() => {
+    const checkValid = async () => {
+      if (token) {
+        const response = await api.validate(token);
+        if (!response.data.success) dispatch(logOut());
+      }
+    };
+
     if (data) {
       setPublished(data.posts.filter((post: Ipost) => post.published === true));
     }
     if (token) checkValid();
-  }, [data, token]);
+  }, [data, token, dispatch]);
 
   return (
-    <div className="home page">
-      <h1>Hello {user ? user : "Guest"}</h1>
+    <div className="page">
+      <h2 className="page-title w-full max-w-full mx-[2rem]">
+        Hello {user ? user : "Guest"}
+      </h2>
       {isLoading && <h1>Loading...</h1>}
       {published &&
-        published.map((post: Ipost, i) => {
+        published.map((post: Ipost) => {
           return (
             <Post
               _id={post._id}
@@ -48,7 +48,7 @@ const Home = () => {
               title={post.title}
               body={post.body}
               date={post.date}
-              key={i}
+              key={post._id}
             />
           );
         })}

@@ -3,16 +3,18 @@ import { faEye } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // utils
 import api from "../../api/api";
-// styles
-import "./Register.scss";
 import { useNavigate } from "react-router-dom";
+// components
 import Modal from "../Modal/Modal";
+import ButtonTypes from "../../enums/ButtonTypes";
+import Button from "../Button/Button";
 
 const Register = () => {
   const initialState = { username: "", password: "", repeatPassword: "" };
   const [state, setState] = useState(initialState);
   const { username, password, repeatPassword } = state;
-  const [passType, setPassType] = useState(false);
+  const [passOneType, setPassOneType] = useState(false);
+  const [passTwoType, setPassTwoType] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState("");
 
@@ -27,8 +29,10 @@ const Register = () => {
     setState({ ...state, [id]: value });
   };
 
-  const handleVisibility = () => {
-    setPassType(!passType);
+  const handleVisibility = (which: string) => {
+    which === "one"
+      ? setPassOneType(!passOneType)
+      : setPassTwoType(!passTwoType);
   };
 
   const closeModal = () => {
@@ -50,8 +54,8 @@ const Register = () => {
   };
 
   return (
-    <div className="register page">
-      <h1>Register</h1>
+    <div className="page">
+      <h2 className="page-title">Register</h2>
       <form onSubmit={handleSubmit}>
         <div className="label-input">
           <label htmlFor="username">username</label>
@@ -69,7 +73,7 @@ const Register = () => {
         <div className="label-input">
           <label htmlFor="password">password</label>
           <input
-            type={passType ? "text" : "password"}
+            type={passOneType ? "text" : "password"}
             name="password"
             id="password"
             onChange={handleChange}
@@ -79,11 +83,16 @@ const Register = () => {
             pattern={passReg}
             required
           />
+          <FontAwesomeIcon
+            className="icon"
+            icon={faEye}
+            onClick={() => handleVisibility("one")}
+          />
         </div>
         <div className="label-input">
           <label htmlFor="repeatPassword">repeat password</label>
           <input
-            type={passType ? "text" : "password"}
+            type={passTwoType ? "text" : "password"}
             name="repeatPassword"
             id="repeatPassword"
             onChange={handleChange}
@@ -96,22 +105,21 @@ const Register = () => {
           <FontAwesomeIcon
             className="icon"
             icon={faEye}
-            onClick={handleVisibility}
+            onClick={() => handleVisibility("two")}
           />
         </div>
-        <button
-          type="submit"
+        <Button
+          type={ButtonTypes.submit}
+          text="submit"
           disabled={!(username && password && repeatPassword)}
-        >
-          Submit
-        </button>
+        />
         {password && repeatPassword && password !== repeatPassword && (
           <p className="alert">Passwords must match!!</p>
         )}
-        <span>
+        <p className="form-info">
           Your password must contain 8 characters, a capital letter, a number
           and a special character.
-        </span>
+        </p>
       </form>
       {showModal && <Modal message={error} closeFunction={closeModal} />}
     </div>

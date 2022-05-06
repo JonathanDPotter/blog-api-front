@@ -2,10 +2,9 @@ import React, { FC, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import api from "../../api/api";
 import { useAppSelector } from "../../store/hooks";
+import Button from "../Button/Button";
 // components
 import Modal from "../Modal/Modal";
-// styles
-import "./Post.scss";
 
 interface IpostProps {
   _id: string;
@@ -45,7 +44,7 @@ const Post: FC<IpostProps> = ({
   };
 
   return (
-    <div className="post">
+    <div className="container my-2">
       <h2 onClick={handleClick}>{title}</h2>
       <p>{body}</p>
       <h3>by {author}</h3>
@@ -56,6 +55,7 @@ const Post: FC<IpostProps> = ({
       {location.pathname === "/myposts" && (
         <>
           <span>{published ? "Published" : "Unublished"}</span>
+          <Button onClick={() => navigate(`/posts/edit/${_id}`)} text="edit" />
           <button onClick={() => navigate(`/posts/edit/${_id}`)}>edit</button>
           <button onClick={() => setModalMessage("Are you Sure?")}>
             Delete

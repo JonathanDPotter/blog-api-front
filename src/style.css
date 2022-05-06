@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+* {
+  box-sizing: border-box;
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+@layer components {
+  .page {
+    @apply w-full bg-lblue h-page pt-[1rem];
+  }
+
+  .page-title {
+    @apply text-2xl w-3/4 max-w-[800px] mx-auto;
+  }
+
+  form {
+    @apply flex flex-col h-1/2 px-[8rem] items-end max-w-[800px] mx-auto;
+  }
+
+  .form-info {
+    @apply text-sm mt-4;
+  }
+
+  .label-input {
+    @apply flex justify-between w-full mx-auto items-center my-2 relative;
+  }
+
+  input {
+    @apply w-1/2;
+  }
+
+  .icon {
+    @apply absolute right-[.5rem];
+  }
+
+  input,
+  textarea {
+    border: 3px solid theme("colors.dblue");
+    @apply shadow-lg rounded-lg bg-lblue;
+  }
+}
+
+.active {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 3px;
+}

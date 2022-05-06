@@ -10,7 +10,7 @@ import { store } from "./store";
 // components
 import App from "./App";
 // styles
-import "./index.scss";
+import "./style.css";
 
 // saves redux state to localStorage
 store.subscribe(

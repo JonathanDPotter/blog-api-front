@@ -3,14 +3,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { postApi } from "./postApiSlice";
 import authReducer from "./authSlice";
-import { loadState } from "./localStorage";
 
 export const store = configureStore({
   reducer: {
     // Add the generated reducer as a specific top-level slice
     [postApi.reducerPath]: postApi.reducer,
-    auth: authReducer
-
+    auth: authReducer,
   },
   // get state from localStorage
   // preloadedState: loadState(),

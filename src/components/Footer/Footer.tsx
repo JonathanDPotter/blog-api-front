@@ -1,12 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-// styles
-import "./Footer.scss";
 
 const Footer = () => {
   return (
-    <footer>
-      <nav>
+    <footer className="bg-yellow h-foot flex justify-around items-center text-lg">
+      <nav className="flex justify-around w-1/2 max-w-lg">
         <NavLink to="/about">About</NavLink>
         <NavLink to="/contact">Contact</NavLink>
       </nav>

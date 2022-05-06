@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 // utils
 import { useAppDispatch } from "../../store/hooks";
 import { logOut } from "../../store/authSlice";
-// styles
-import "./LogOut.scss";
+// enums
+import ButtonTypes from "../../enums/ButtonTypes";
+// components
+import Button from "../Button/Button";
 
 const LogOut = () => {
   const navigate = useNavigate();
@@ -17,11 +19,12 @@ const LogOut = () => {
   };
 
   return (
-    <div className="log-out page">
+    <div className="page">
       <h1>Log Out</h1>
       <form onSubmit={handleSubmit}>
         <h1>Are you sure that you want to log out?</h1>
-        <button type="submit">Log Out</button>
+        <Button type={ButtonTypes.submit} text="Log Out" />
+        <Button text="Cancel" onClick={() => navigate(-1)} />
       </form>
     </div>
   );

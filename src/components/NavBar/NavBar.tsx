@@ -1,8 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../../store/hooks";
-// styles
-import "./NavBar.scss";
 
 const NavBar = () => {
   const { user } = useAppSelector((state) => state.auth);
@@ -27,9 +25,9 @@ const NavBar = () => {
   };
 
   return (
-    <header>
-      <h1>Blog</h1>
-      <nav>
+    <header className="bg-dblue h-nav border-b-4 border-brown flex flex-row justify-around text-lg items-center text-white/80">
+      <h1 className="text-4xl">Blog</h1>
+      <nav className="flex flex-row justify-around w-1/2">
         <NavLink to="/">Home</NavLink>
         {user ? <AuthLinks /> : <GuestLinks />}
       </nav>

@@ -7,8 +7,8 @@ import { useAppSelector } from "../../store/hooks";
 import InewPost from "../../interfaces/newPost";
 // components
 import Modal from "../Modal/Modal";
-// styles
-import "./MakePost.scss";
+import Button from "../Button/Button";
+import ButtonTypes from "../../enums/ButtonTypes";
 
 const MakePost = () => {
   const initialState = { title: "", body: "", published: false };
@@ -61,10 +61,10 @@ const MakePost = () => {
   }, [user, navigate]);
 
   return (
-    <div className="make-post page">
+    <div className="page">
       <h1>Make Post</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="label-input">
+      <form onSubmit={handleSubmit} className="container">
+        <div className="container">
           <label htmlFor="title">Title</label>
           <input
             type="text"
@@ -75,7 +75,7 @@ const MakePost = () => {
             onChange={handleChange}
           />
         </div>
-        <div className="label-input">
+        <div className="container">
           <label htmlFor="body">Body</label>
           <textarea
             name="body"
@@ -85,7 +85,7 @@ const MakePost = () => {
             rows={10}
           />
         </div>
-        <div className="label-input check-box">
+        <div className="container">
           <label htmlFor="published">Publish</label>
           <input
             type="checkbox"
@@ -95,9 +95,11 @@ const MakePost = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit" disabled={!(title && body)}>
-          submit
-        </button>
+        <Button
+          type={ButtonTypes.submit}
+          disabled={!(title && body)}
+          text="Submit"
+        />
       </form>
       {modalMessage && (
         <Modal message={modalMessage} closeFunction={closeModal} />

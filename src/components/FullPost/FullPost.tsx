@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+// components
+import Button from "../Button/Button";
 // utils
 import { useGetAllPostsQuery } from "../../store/postApiSlice";
 // types
 import Ipost from "../../interfaces/post";
-// styles
-import "./FullPost.scss";
+import ButtonTypes from "../../enums/ButtonTypes";
 
 const FullPost = () => {
   const { data, error } = useGetAllPostsQuery("");
@@ -27,7 +28,11 @@ const FullPost = () => {
         <p>{body}</p>
         <span>{new Date(date).toDateString()}</span>
         <br />
-        <button onClick={() => navigate("/")}>Back</button>
+        <Button
+          onClick={() => navigate("/")}
+          text="Back"
+          type={ButtonTypes.button}
+        />
       </div>
     );
   } else {

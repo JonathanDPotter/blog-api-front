@@ -17,7 +17,7 @@ import NotFound from "./components/NotFound/NotFound";
 
 const App = () => {
   return (
-    <>
+    <div>
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -33,7 +33,7 @@ const App = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
-    </>
+    </div>
   );
 };
 

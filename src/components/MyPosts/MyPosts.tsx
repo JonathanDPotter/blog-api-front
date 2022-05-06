@@ -3,8 +3,6 @@ import { useAppSelector } from "../../store/hooks";
 import { useGetAllPostsQuery } from "../../store/postApiSlice";
 // components
 import Post from "../Post/Post";
-// styles
-import "./MyPosts.scss";
 
 const MyPosts = () => {
   const { data, error, isLoading } = useGetAllPostsQuery("");
@@ -35,7 +33,7 @@ const MyPosts = () => {
             published={post.published}
           />
         ))}
-      {user && mine.length === 0 && <h1>No posts</h1>}
+      {user && mine.length === 0 && <div className="container">No posts</div>}
     </div>
   );
 };
