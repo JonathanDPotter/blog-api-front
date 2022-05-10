@@ -44,23 +44,40 @@ const Post: FC<IpostProps> = ({
   };
 
   return (
-    <div className="container my-2">
-      <h2 onClick={handleClick}>{title}</h2>
+    <div className="container my-4 border-t-2 border-b-4 border-dblue">
+      <h2 onClick={handleClick} className="border-b text-xl">
+        {title}
+      </h2>
       <p>{body}</p>
-      <h3>by {author}</h3>
-      <span>
-        {dateObj.toDateString()} {dateObj.toTimeString()}
-      </span>
-      <br />
+      <div className="border-b w-full text-right mt-2">
+        <h3 className="text-lg ">by {author}</h3>
+      </div>
+      <div className="text-right mb-2">
+        <span>
+          {dateObj.toLocaleDateString()}{" "}
+          {dateObj.toLocaleTimeString([], {
+            hour: "numeric",
+            minute: "numeric",
+          })}
+        </span>
+      </div>
       {location.pathname === "/myposts" && (
-        <>
-          <span>{published ? "Published" : "Unublished"}</span>
-          <Button onClick={() => navigate(`/posts/edit/${_id}`)} text="edit" />
-          <button onClick={() => navigate(`/posts/edit/${_id}`)}>edit</button>
-          <button onClick={() => setModalMessage("Are you Sure?")}>
-            Delete
-          </button>
-        </>
+        <div className="flex-col py-4">
+          <p className="display-block">
+            {published ? "Published" : "Unpublished"}
+          </p>
+          <div className="flex justify-end">
+            <Button
+              onClick={() => navigate(`/posts/edit/${_id}`)}
+              text="edit"
+              classList="bg-dblue text-white font-bold py-2 px-4 rounded hover:bg-yellow hover:text-dblue max-w-[8rem] mr-[2rem]"
+            />
+            <Button
+              onClick={() => setModalMessage("Are you Sure?")}
+              text="Delete"
+            />
+          </div>
+        </div>
       )}
       {modalMessage && (
         <Modal

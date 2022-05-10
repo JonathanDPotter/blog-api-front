@@ -62,9 +62,9 @@ const MakePost = () => {
 
   return (
     <div className="page">
-      <h1>Make Post</h1>
+      <h2 className="page-title">Make Post</h2>
       <form onSubmit={handleSubmit} className="container">
-        <div className="container">
+        <div className="label-input">
           <label htmlFor="title">Title</label>
           <input
             type="text"
@@ -73,19 +73,21 @@ const MakePost = () => {
             id="title"
             value={title}
             onChange={handleChange}
+            className="w-3/4"
           />
         </div>
-        <div className="container">
-          <label htmlFor="body">Body</label>
+        <div className="label-input">
+          <label className="self-start" htmlFor="body">Body</label>
           <textarea
             name="body"
             id="body"
             value={body}
             onChange={handleChange}
             rows={10}
+            className="ml-2"
           />
         </div>
-        <div className="container">
+        <div className="label-input justify-start">
           <label htmlFor="published">Publish</label>
           <input
             type="checkbox"
@@ -93,6 +95,7 @@ const MakePost = () => {
             id="published"
             checked={published}
             onChange={handleChange}
+            className="shadow-none w-fit ml-2"
           />
         </div>
         <Button

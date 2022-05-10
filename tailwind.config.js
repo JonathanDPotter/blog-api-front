@@ -10,14 +10,6 @@ module.exports = {
       white: "#FFF",
     },
 
-    extend: {
-      spacing: {
-        nav: "15vh",
-        page: "75vh",
-        foot: "10vh",
-      },
-    },
-
     container: {
       center: true,
       padding: "2rem",

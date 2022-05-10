@@ -25,9 +25,9 @@ const NavBar = () => {
   };
 
   return (
-    <header className="bg-dblue h-nav border-b-4 border-brown flex flex-row justify-around text-lg items-center text-white/80">
-      <h1 className="text-4xl">Blog</h1>
-      <nav className="flex flex-row justify-around w-1/2">
+    <header className="header">
+      <h1 className="text-4xl mx-auto">Blog</h1>
+      <nav className="grid grid-cols-2 sm:flex justify-around w-1/2 ml-auto">
         <NavLink to="/">Home</NavLink>
         {user ? <AuthLinks /> : <GuestLinks />}
       </nav>

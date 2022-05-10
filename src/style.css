@@ -4,14 +4,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 * {
-  box-sizing: border-box;
-  z-index: 0;
-  margin: 0;
-  padding: 0;
+  @apply box-border;
 }
 
+html,
 body {
-  font-family: "Poppins", sans-serif;
+  @apply overflow-x-hidden relative font-[Poppins];
 }
 
 code {
@@ -19,17 +17,46 @@ code {
     monospace;
 }
 
+@layer base {
+  form {
+    border: 3px solid theme("colors.dblue");
+    @apply flex flex-col h-1/2 px-8 items-end max-w-[800px] mx-auto rounded-lg bg-white;
+  }
+
+  input {
+    @apply w-1/2 pl-2;
+  }
+
+  input,
+  textarea {
+    border: 3px solid theme("colors.dblue");
+    @apply shadow-lg rounded-lg resize-none;
+  }
+
+  p {
+    @apply whitespace-pre-wrap;
+  }
+
+  p a {
+    @apply text-dblue hover:text-yellow;
+  }
+}
+
 @layer components {
   .page {
-    @apply w-full bg-lblue h-page pt-[1rem];
+    @apply w-full min-h-[70vh] sm:min-h-[75vh] pt-[1rem] bg-[whitesmoke];
+  }
+
+  .header {
+    @apply bg-dblue h-[20vh] sm:h-[15vh] border-b-4 border-brown flex flex-row justify-around text-lg items-center text-white/80;
+  }
+
+  .foot {
+    @apply bg-yellow min-h-[10vh] flex justify-around items-center text-lg;
   }
 
   .page-title {
     @apply text-2xl w-3/4 max-w-[800px] mx-auto;
-  }
-
-  form {
-    @apply flex flex-col h-1/2 px-[8rem] items-end max-w-[800px] mx-auto;
   }
 
   .form-info {
@@ -40,18 +67,8 @@ code {
     @apply flex justify-between w-full mx-auto items-center my-2 relative;
   }
 
-  input {
-    @apply w-1/2;
-  }
-
   .icon {
     @apply absolute right-[.5rem];
-  }
-
-  input,
-  textarea {
-    border: 3px solid theme("colors.dblue");
-    @apply shadow-lg rounded-lg bg-lblue;
   }
 }
 

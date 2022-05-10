@@ -38,7 +38,7 @@ const Home = () => {
       <h2 className="page-title w-full max-w-full mx-[2rem]">
         Hello {user ? user : "Guest"}
       </h2>
-      {isLoading && <h1>Loading...</h1>}
+      {isLoading && <p className="loading">Loading...</p>}
       {published &&
         published.map((post: Ipost) => {
           return (

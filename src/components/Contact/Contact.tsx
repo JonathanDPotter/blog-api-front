@@ -7,7 +7,12 @@ const Contact = () => {
       <div className="container">
         <p>
           You can contact me by{" "}
-          <a href="mailto: jonathan.d.potter@outlook.com">email</a>.
+          <a
+            href="mailto: jonathan.d.potter@outlook.com"
+          >
+            email
+          </a>
+          .
         </p>
         <p>
           You can visit my{" "}

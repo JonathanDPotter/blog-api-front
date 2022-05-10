@@ -18,8 +18,8 @@ const MyPosts = () => {
 
   return (
     <div className="my-posts page">
-      <h1>My Posts</h1>
-      {isLoading && <h1>Loading...</h1>}
+      <h2 className="page-title">My Posts</h2>
+      {isLoading && <p className="loading">Loading...</p>}
       {user &&
         mine &&
         mine.map((post: any, i) => (
