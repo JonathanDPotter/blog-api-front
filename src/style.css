@@ -56,7 +56,7 @@ code {
   }
 
   .page-title {
-    @apply text-2xl w-3/4 max-w-[800px] mx-auto;
+    @apply text-2xl w-3/4 max-w-[800px] mx-auto mb-[2rem];
   }
 
   .form-info {

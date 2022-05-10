@@ -20,7 +20,7 @@ const LogOut = () => {
 
   return (
     <div className="page">
-      <h2 className="page-title mb-[2rem]">Log Out</h2>
+      <h2 className="page-title">Log Out</h2>
       <form
         onSubmit={handleSubmit}
         className="h-[50vh] w-[100%]"
