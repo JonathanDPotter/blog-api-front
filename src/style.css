@@ -20,7 +20,7 @@ code {
 @layer base {
   form {
     border: 3px solid theme("colors.dblue");
-    @apply flex flex-col h-1/2 px-8 items-end max-w-[800px] mx-auto rounded-lg bg-white;
+    @apply flex flex-col h-1/2 p-8 items-end max-w-[800px] mx-auto rounded-lg bg-white;
   }
 
   input {
@@ -69,6 +69,10 @@ code {
 
   .icon {
     @apply absolute right-[.5rem];
+  }
+
+  .loading {
+    @apply text-xl text-red;
   }
 }
 

@@ -28,7 +28,7 @@ const LogOut = () => {
         <p className="mx-auto">Are you sure that you want to log out?</p>
         <div className="flex w-[100%] justify-around mt-[2rem]">
           <Button type={ButtonTypes.submit} text="Log Out" />
-          <Button text="Cancel" onClick={() => navigate(-1)} />
+          <Button type={ButtonTypes.button} text="Cancel" onClick={() => navigate(-1)} />
         </div>
       </form>
     </div>

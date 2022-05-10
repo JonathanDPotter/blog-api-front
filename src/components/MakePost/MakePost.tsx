@@ -63,7 +63,7 @@ const MakePost = () => {
   return (
     <div className="page">
       <h2 className="page-title">Make Post</h2>
-      <form onSubmit={handleSubmit} className="container">
+      <form onSubmit={handleSubmit}>
         <div className="label-input">
           <label htmlFor="title">Title</label>
           <input
@@ -77,7 +77,9 @@ const MakePost = () => {
           />
         </div>
         <div className="label-input">
-          <label className="self-start" htmlFor="body">Body</label>
+          <label className="self-start" htmlFor="body">
+            Body
+          </label>
           <textarea
             name="body"
             id="body"
